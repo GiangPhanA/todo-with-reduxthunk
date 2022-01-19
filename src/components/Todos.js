@@ -1,12 +1,17 @@
 import React from 'react';
+import { useEffect } from 'react';
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import TodoForm from './TodoForm';
-import {markComplete, deleteTodo} from '../store/actions/todoActions'
+import {markComplete, deleteTodo, getTodos} from '../store/actions/todoActions'
 
 
 
-const Todos = ({todos, markComplete, deleteTodo}) => {
+const Todos = ({todos, markComplete, deleteTodo, getTodos}) => {
+
+    useEffect(() => {
+        getTodos();
+    }, [])
    
     return (
         <div className = 'grid wide'>
@@ -36,7 +41,7 @@ const Todos = ({todos, markComplete, deleteTodo}) => {
 
 Todos.propTypes = {
 	todos: PropTypes.array.isRequired,
-	// getTodos: PropTypes.func.isRequired,
+	getTodos: PropTypes.func.isRequired,
 	markComplete: PropTypes.func.isRequired,
 	deleteTodo: PropTypes.func.isRequired
 }
@@ -45,4 +50,4 @@ const mapStateToProps = state => ({
 	todos: state.myTodos.todos
 })
 
-export default connect(mapStateToProps, {markComplete, deleteTodo}) (Todos)
+export default connect(mapStateToProps, {markComplete, deleteTodo, getTodos}) (Todos)
