@@ -1,5 +1,5 @@
 const initialState = {
-	todos: [] 
+	 todos: [] 
 }
 
 const todoReducer = (state = initialState, action) => {
@@ -20,8 +20,7 @@ const todoReducer = (state = initialState, action) => {
                     if(todo.id === action.payload) 
                       todo.completed = !todo.completed
                     return todo
-                })
-        
+                })       
             }
         case 'ADD_TODO':
             return {
